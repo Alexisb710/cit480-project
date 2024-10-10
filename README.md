@@ -35,3 +35,5 @@ To manage our workflow and development process, we are leveraging several softwa
 ---
 
 Feel free to update this based on new tools or changes as we progress!
+
+[![Super-Linter](https://github.com/<OWNER>/<REPOSITORY>/actions/workflows/<WORKFLOW_FILE_NAME>/badge.svg)](https://github.com/marketplace/actions/super-linter)
