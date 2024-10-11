@@ -2,7 +2,7 @@
 
 // Intentionally leaving a semi-colon out, declaring a variable that is never used,
 // and using inconsistent quotes.
-let unusedVar = "This is a test";
+const unusedVar = "This is a test";
 
 function sayHello() {
   console.log("Hello, World!");
