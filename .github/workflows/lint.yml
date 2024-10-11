@@ -1,4 +1,4 @@
-name: Super-Linter
+name: Using Super-Linter
 
 on:
   # Run the workflow for pushes to any branch and pull requests to any branch
