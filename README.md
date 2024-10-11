@@ -1,12 +1,12 @@
+# Adventures and Sportings
+
 ## cit480-project
 
 CIT480 E-commerce project
 
-# Adventures and Sportings
-
 ## Project Overview
 
-**Adventures and Sportings** is a website dedicated to fitness equipment and accessories. Our goal is to make it easier for fitness enthusiasts to find the products they need. Whether you're a runner, swimmer, boxer, or powerlifter, you can find everything you’re looking for on our site.
+**Adventures and Sportings** is a site dedicated to fitness equipment and accessories. Our goal is to make it easier for fitness enthusiasts to find the products they need. Whether you're a runner, swimmer, boxer, or powerlifter, you can find everything you’re looking for on our site.
 
 ## Technology Stack
 
@@ -17,7 +17,7 @@ We are building this project using the **LAMP stack**:
 - **MySQL**
 - **PHP**
 
-On the front-end, we are using:
+On the frontend, we are using:
 
 - **HTML**
 - **CSS**
