@@ -4,7 +4,7 @@
 // and using inconsistent quotes.
 const unusedVar = 'This is a test'
 
-function sayHello() {
+function sayHello () {
   console.log('Hello, World!')
   console.log('Hello')
   console.log(unusedVar)
