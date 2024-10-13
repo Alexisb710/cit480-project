@@ -1,0 +1,6 @@
+{
+  "extends": ["standard", "prettier"],
+  "rules": {
+    "space-before-function-paren": ["error", "always"]
+  }
+}
