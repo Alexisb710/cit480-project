@@ -24,10 +24,16 @@ jobs:
         env:
           DEFAULT_BRANCH: main # Set the default branch for Super Linter's configuration
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Provide GitHub token for API access
-          VALIDATE_HTML: true    # Enable HTML linting
-          VALIDATE_CSS: true     # Enable CSS linting
-          VALIDATE_JAVASCRIPT: true  # Enable JS linting
-          # Disable other linting
-          VALIDATE_SQL: false    # Disable SQL linting
-          VALIDATE_PYTHON: false # Disable Python linting (if not needed)
-          VALIDATE_ALL_CODEBASE: false # Ensure it only validates the necessary files
+          
+          # Enable linters for HTML, CSS, and JS
+          VALIDATE_HTML: true
+          VALIDATE_CSS: true
+          VALIDATE_JAVASCRIPT: true
+          
+          # Explicitly disable other linters (including SQL)
+          VALIDATE_SQL: false
+          VALIDATE_PYTHON: false
+          VALIDATE_MARKDOWN: false
+          VALIDATE_YAML: false
+          VALIDATE_JSON: false
+          VALIDATE_DOCKERFILE: false
