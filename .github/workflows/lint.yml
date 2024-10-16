@@ -18,6 +18,13 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
+      # Install SQLFluff
+      - name: Install SQLFluff
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install sqlfluff
+
+      # Run SQLFluff linter
       - name: Run SQLFluff linter
         run: |
           sqlfluff lint db/schema.sql --dialect mysql
