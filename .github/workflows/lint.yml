@@ -18,6 +18,11 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
+      - name: Run SQLFluff linter
+        run: |
+          sqlfluff lint db/schema.sql --dialect mysql
+          sqlfluff lint db/seed.sql --dialect mysql
+
       # Run Super Linter
       - name: Run Super Linter
         uses: github/super-linter@v5
