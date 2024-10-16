@@ -27,7 +27,7 @@ jobs:
           pip install sqlfluff
 
       # Run SQLFluff linter in the virtual environment
-      - name: Run SQLFluff linter
+      - name: Run SQLFluff linter with relaxed rules
         run: |
           source venv/bin/activate
           sqlfluff lint db/schema.sql --dialect mysql
