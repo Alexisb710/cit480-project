@@ -1,5 +1,5 @@
 -- Insert Users with phone numbers in the format (xxx)xxx-xxxx
-INSERT INTO User (Name, Email, Password, Phone, Role) VALUES
+INSERT INTO Users (Name, Email, Password, Phone, Role) VALUES
 ('John Doe', 'john.doe@example.com', 'password123', '(555)123-4567', 'C'),
 ('Alice Smith', 'alice.smith@example.com', 'password456', '(555)234-5678', 'C'),
 ('Bob Johnson', 'bob.johnson@example.com', 'password789', '(555)345-6789', 'C'),
@@ -45,7 +45,7 @@ INSERT INTO Product (Name, Description, Price, Category_ID, Brand_ID) VALUES
 ('Climbing Rope', 'Durable rope for mountain climbing', 199.99, 2, 3),
 ('Compression Socks', 'Socks for better circulation during runs', 12.99, 3, 4);
 
--- Insert Addresses (depends on User table)
+-- Insert Addresses (depends on Users table)
 INSERT INTO Address (User_ID, Street, City, State, Zip_code, Country, Type) VALUES
 (1, '123 Main St', 'Springfield', 'IL', '62704', 'USA', 'B'),
 (2, '456 Oak St', 'Metropolis', 'IL', '62960', 'USA', 'S'),
