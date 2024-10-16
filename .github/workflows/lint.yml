@@ -18,15 +18,18 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      # Install SQLFluff
-      - name: Install SQLFluff
+      # Set up Python and create a virtual environment
+      - name: Set up Python and Install SQLFluff
         run: |
+          python3 -m venv venv
+          source venv/bin/activate
           python3 -m pip install --upgrade pip
           pip install sqlfluff
 
-      # Run SQLFluff linter
+      # Run SQLFluff linter in the virtual environment
       - name: Run SQLFluff linter
         run: |
+          source venv/bin/activate
           sqlfluff lint db/schema.sql --dialect mysql
           sqlfluff lint db/seed.sql --dialect mysql
 
