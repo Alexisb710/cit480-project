@@ -6,15 +6,6 @@ INSERT INTO User (Name, Email, Password, Phone, Role) VALUES
 ('Charlie Brown', 'charlie.brown@example.com', 'password111', '(555)456-7890', 'C'),
 ('Admin User', 'admin@example.com', 'adminpass', '(555)567-8901', 'A');
 
-
--- Insert Addresses
-INSERT INTO Address (User_ID, Street, City, State, Zip_code, Country, Type) VALUES
-(1, '123 Main St', 'Springfield', 'IL', '62704', 'USA', 'B'),
-(2, '456 Oak St', 'Metropolis', 'IL', '62960', 'USA', 'S'),
-(3, '789 Pine St', 'Smallville', 'KS', '67524', 'USA', 'B'),
-(4, '101 Maple St', 'Gotham', 'NY', '10001', 'USA', 'S'),
-(5, '202 Cedar St', 'Star City', 'CA', '90210', 'USA', 'B');
-
 -- Insert Brands
 INSERT INTO Brand (Name) VALUES
 ('Brand A'),
@@ -31,7 +22,7 @@ INSERT INTO Category (Name) VALUES
 ('Accessories'),
 ('Outdoors');
 
--- Insert Products
+-- Insert Products (after Brands and Categories)
 INSERT INTO Product (Name, Description, Price, Category_ID, Brand_ID) VALUES
 ('10lb Dumbbells', 'A set of 10lb dumbbells for strength training', 29.99, 1, 5),
 ('Climbing Clip', 'Sturdy clip for climbing safety', 19.99, 2, 3),
@@ -54,8 +45,15 @@ INSERT INTO Product (Name, Description, Price, Category_ID, Brand_ID) VALUES
 ('Climbing Rope', 'Durable rope for mountain climbing', 199.99, 2, 3),
 ('Compression Socks', 'Socks for better circulation during runs', 12.99, 3, 4);
 
+-- Insert Addresses (depends on User table)
+INSERT INTO Address (User_ID, Street, City, State, Zip_code, Country, Type) VALUES
+(1, '123 Main St', 'Springfield', 'IL', '62704', 'USA', 'B'),
+(2, '456 Oak St', 'Metropolis', 'IL', '62960', 'USA', 'S'),
+(3, '789 Pine St', 'Smallville', 'KS', '67524', 'USA', 'B'),
+(4, '101 Maple St', 'Gotham', 'NY', '10001', 'USA', 'S'),
+(5, '202 Cedar St', 'Star City', 'CA', '90210', 'USA', 'B');
 
--- Insert Orders
+-- Insert Orders (depends on User table)
 INSERT INTO Orders (User_ID, Total_amount, Order_status, Created_At) VALUES
 (1, 129.95, 'P', NOW()),
 (2, 59.99, 'S', NOW()),
@@ -63,7 +61,7 @@ INSERT INTO Orders (User_ID, Total_amount, Order_status, Created_At) VALUES
 (4, 89.99, 'C', NOW()),
 (5, 14.99, 'P', NOW());
 
--- Insert Order Items (linking Orders to Products)
+-- Insert Order Items (depends on Orders and Product tables)
 INSERT INTO Order_Item (Order_ID, Product_ID, Quantity, Item_price) VALUES
 (1, 1, 2, 29.99),
 (1, 5, 1, 14.99),
@@ -72,7 +70,7 @@ INSERT INTO Order_Item (Order_ID, Product_ID, Quantity, Item_price) VALUES
 (4, 4, 1, 89.99),
 (5, 5, 1, 14.99);
 
--- Insert Payments
+-- Insert Payments (depends on Orders table)
 INSERT INTO Payment (Order_ID, Payment_method, Payment_status, Payment_date) VALUES
 (1, 'CC', 'P', NOW()),
 (2, 'PP', 'F', NOW()),
@@ -80,7 +78,7 @@ INSERT INTO Payment (Order_ID, Payment_method, Payment_status, Payment_date) VAL
 (4, 'CC', 'P', NOW()),
 (5, 'PP', 'F', NOW());
 
--- Insert Shipments
+-- Insert Shipments (depends on Orders table)
 INSERT INTO Shipment (Order_ID, Shipment_method, Shipment_date, Tracking_number) VALUES
 (1, 'C', NOW(), 'TRACK1234'),
 (2, 'P', NOW(), 'TRACK5678'),

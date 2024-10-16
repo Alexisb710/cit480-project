@@ -1,3 +1,4 @@
+-- Create User table
 CREATE TABLE User (
     User_ID INT PRIMARY KEY AUTO_INCREMENT,
     Name VARCHAR(100),
@@ -7,6 +8,42 @@ CREATE TABLE User (
     Role ENUM('A', 'C')
 );
 
+-- Create Category table (referenced by Product)
+CREATE TABLE Category (
+    Category_ID INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(255)
+);
+
+-- Create Brand table (referenced by Product)
+CREATE TABLE Brand (
+    Brand_ID INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(255)
+);
+
+-- Create Product table (which references Category and Brand)
+CREATE TABLE Product (
+    Product_ID INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(255),
+    Description TEXT,
+    Price DECIMAL(10, 2),
+    Category_ID INT,
+    Brand_ID INT,
+    FOREIGN KEY (Category_ID) REFERENCES Category(Category_ID),
+    FOREIGN KEY (Brand_ID) REFERENCES Brand(Brand_ID)
+);
+
+-- Create Orders table (referenced by other tables)
+CREATE TABLE Orders (
+    -- the table is named Orders because Order is a reserved keyword in SQL
+    Order_ID INT PRIMARY KEY AUTO_INCREMENT,
+    User_ID INT,
+    Total_amount DECIMAL(10, 2),
+    Order_status ENUM('P', 'S', 'D', 'C'),
+    Created_At TIMESTAMP,
+    FOREIGN KEY (User_ID) REFERENCES User(User_ID)
+);
+
+-- Create Address table (referenced by User)
 CREATE TABLE Address (
     Address_ID INT PRIMARY KEY AUTO_INCREMENT,
     User_ID INT,
@@ -19,6 +56,7 @@ CREATE TABLE Address (
     FOREIGN KEY (User_ID) REFERENCES User(User_ID)
 );
 
+-- Create Payment table (references Orders)
 CREATE TABLE Payment (
     Payment_ID INT PRIMARY KEY AUTO_INCREMENT,
     Order_ID INT,
@@ -28,6 +66,7 @@ CREATE TABLE Payment (
     FOREIGN KEY (Order_ID) REFERENCES Orders(Order_ID)
 );
 
+-- Create Shipment table (references Orders)
 CREATE TABLE Shipment (
     Shipment_ID INT PRIMARY KEY AUTO_INCREMENT,
     Order_ID INT,
@@ -37,6 +76,7 @@ CREATE TABLE Shipment (
     FOREIGN KEY (Order_ID) REFERENCES Orders(Order_ID)
 );
 
+-- Create Cart table (references User)
 CREATE TABLE Cart (
     Cart_ID INT PRIMARY KEY AUTO_INCREMENT,
     User_ID INT,
@@ -44,16 +84,7 @@ CREATE TABLE Cart (
     FOREIGN KEY (User_ID) REFERENCES User(User_ID)
 );
 
-CREATE TABLE Orders (
-    -- the table is named Orders because Order is a reserved keyword in sql
-    Order_ID INT PRIMARY KEY AUTO_INCREMENT,
-    User_ID INT,
-    Total_amount DECIMAL(10, 2),
-    Order_status ENUM('P', 'S', 'D', 'C'),
-    Created_At TIMESTAMP,
-    FOREIGN KEY (User_ID) REFERENCES User(User_ID)
-);
-
+-- Create Order_Item table (references Orders and Product)
 CREATE TABLE Order_Item (
     Order_ID INT,
     Product_ID INT,
@@ -62,25 +93,4 @@ CREATE TABLE Order_Item (
     PRIMARY KEY (Order_ID, Product_ID),
     FOREIGN KEY (Order_ID) REFERENCES Orders(Order_ID),
     FOREIGN KEY (Product_ID) REFERENCES Product(Product_ID)
-);
-
-CREATE TABLE Product (
-    Product_ID INT PRIMARY KEY AUTO_INCREMENT,
-    Name VARCHAR(255),
-    Description TEXT,
-    Price DECIMAL(10, 2),
-    Category_ID INT,
-    Brand_ID INT,
-    FOREIGN KEY (Category_ID) REFERENCES Category(Category_ID),
-    FOREIGN KEY (Brand_ID) REFERENCES Brand(Brand_ID)
-);
-
-CREATE TABLE Category (
-    Category_ID INT PRIMARY KEY AUTO_INCREMENT,
-    Name VARCHAR(255)
-);
-
-CREATE TABLE Brand (
-    Brand_ID INT PRIMARY KEY AUTO_INCREMENT,
-    Name VARCHAR(255)
 );
