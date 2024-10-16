@@ -26,8 +26,7 @@ jobs:
 
       # Install dependencies (ESLint, Stylelint, etc.)
       - name: Install Dependencies
-        run: |
-          npm install
+        run: npm install
 
       # Run ESLint (for JavaScript and React)
       - name: Run ESLint
