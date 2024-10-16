@@ -1,4 +1,4 @@
-name: Lint Codebase
+name: Super-Linter
 
 on:
   # Run the workflow for pushes to any branch and pull requests to any branch
@@ -7,7 +7,7 @@ on:
       - "**" # This wildcard matches any branch
   pull_request:
     branches:
-      - "**"
+      - "**" # This will run for pull requests to any branch
 
 jobs:
   lint:
@@ -18,44 +18,9 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      # Set up Node.js for JavaScript/React linting
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-
-      # Install dependencies (ESLint, Stylelint, etc.)
-      - name: Install Dependencies
-        run: npm install
-
-      # Run ESLint (for JavaScript and React)
-      - name: Run ESLint
-        run: |
-          npx eslint 'src/**/*.{js,jsx}'
-
-      # Run Stylelint (for CSS)
-      - name: Run Stylelint
-        run: |
-          npx stylelint '**/*.css'
-
-      # Set up PHP environment for PHP_CodeSniffer
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.0' # Adjust PHP version as needed
-
-      # Install PHP_CodeSniffer
-      - name: Install PHP_CodeSniffer
-        run: |
-          composer global require "squizlabs/php_codesniffer=*"
-
-      # Run PHP_CodeSniffer (for PHP)
-      - name: Run PHP_CodeSniffer
-        run: |
-          ~/.composer/vendor/bin/phpcs --standard=PSR12 src/**/*.php
-
-      # Run SQLLint (for MySQL)
-      - name: Run SQLLint
-        run: |
-          npm install -g sql-lint
-          sql-lint '**/*.sql'
+      # Run Super Linter
+      - name: Run Super Linter
+        uses: github/super-linter@v5
+        env:
+          DEFAULT_BRANCH: main # Set the default branch for Super Linter's configuration
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Provide GitHub token for API access
