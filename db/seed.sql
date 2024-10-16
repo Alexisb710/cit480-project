@@ -85,3 +85,31 @@ INSERT INTO Shipment (Order_ID, Shipment_method, Shipment_date, Tracking_number)
 (3, 'ISP', NOW(), 'TRACK9876'),
 (4, 'P', NOW(), 'TRACK5432'),
 (5, 'C', NOW(), 'TRACK6789');
+
+-- Insert Cart Data without Total_price
+INSERT INTO Cart (User_ID) VALUES
+(1),  -- Cart 1 for User 1
+(2),  -- Cart 2 for User 2
+(3),  -- Cart 3 for User 3
+(4),  -- Cart 4 for User 4
+(5);  -- Cart 5 for User 5
+
+-- Insert Cart Items for each cart
+INSERT INTO Cart_Items (Cart_ID, Product_ID, Quantity, Item_price) VALUES
+-- Cart for User 1
+(1, 1, 2, 29.99),  -- 2 Dumbbells in User 1's cart
+(1, 5, 1, 14.99),  -- 1 Jump Rope in User 1's cart
+
+-- Cart for User 2
+(2, 3, 1, 39.99),  -- 1 Pull-Up Bar in User 2's cart
+
+-- Cart for User 3
+(3, 4, 1, 99.99),  -- 1 Climbing Shoes in User 3's cart
+(3, 2, 1, 59.99),  -- 1 Treadmill in User 3's cart
+
+-- Cart for User 4
+(4, 7, 1, 89.99),  -- 1 Running Shoes in User 4's cart
+
+-- Cart for User 5
+(5, 8, 1, 15.99),  -- 1 Resistance Bands in User 5's cart
+(5, 9, 1, 79.99);  -- 1 Climbing Harness in User 5's cart

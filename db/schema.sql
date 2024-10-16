@@ -80,8 +80,18 @@ CREATE TABLE Shipment (
 CREATE TABLE Cart (
     Cart_ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     User_ID INT NOT NULL,
-    Total_price DECIMAL(10, 2),
     FOREIGN KEY (User_ID) REFERENCES Users(User_ID)
+);
+
+-- Cart_Item Table
+CREATE TABLE Cart_Items(
+    Cart_ID INT NOT NULL,
+    Product_ID INT NOT NULL,
+    Quantity INT NOT NULL,
+    Item_price DECIMAL(10, 2),  -- Price of each item at the time it was added to the cart
+    CONSTRAINT PK_Cart_Product PRIMARY KEY (Cart_ID, Product_ID),
+    FOREIGN KEY (Cart_ID) REFERENCES Cart(Cart_ID),
+    FOREIGN KEY (Product_ID) REFERENCES Product(Product_ID)
 );
 
 -- Create Order_Item table (references Orders and Product)

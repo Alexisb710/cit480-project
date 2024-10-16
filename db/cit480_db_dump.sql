@@ -81,11 +81,10 @@ DROP TABLE IF EXISTS `Cart`;
 CREATE TABLE `Cart` (
   `Cart_ID` int NOT NULL AUTO_INCREMENT,
   `User_ID` int NOT NULL,
-  `Total_price` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`Cart_ID`),
   KEY `User_ID` (`User_ID`),
   CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`User_ID`) REFERENCES `Users` (`User_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,7 +93,37 @@ CREATE TABLE `Cart` (
 
 LOCK TABLES `Cart` WRITE;
 /*!40000 ALTER TABLE `Cart` DISABLE KEYS */;
+INSERT INTO `Cart` VALUES (1,1),(2,2),(3,3),(4,4),(5,5);
 /*!40000 ALTER TABLE `Cart` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Cart_Items`
+--
+
+DROP TABLE IF EXISTS `Cart_Items`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Cart_Items` (
+  `Cart_ID` int NOT NULL,
+  `Product_ID` int NOT NULL,
+  `Quantity` int NOT NULL,
+  `Item_price` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`Cart_ID`,`Product_ID`),
+  KEY `Product_ID` (`Product_ID`),
+  CONSTRAINT `cart_items_ibfk_1` FOREIGN KEY (`Cart_ID`) REFERENCES `Cart` (`Cart_ID`),
+  CONSTRAINT `cart_items_ibfk_2` FOREIGN KEY (`Product_ID`) REFERENCES `Product` (`Product_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Cart_Items`
+--
+
+LOCK TABLES `Cart_Items` WRITE;
+/*!40000 ALTER TABLE `Cart_Items` DISABLE KEYS */;
+INSERT INTO `Cart_Items` VALUES (1,1,2,29.99),(1,5,1,14.99),(2,3,1,39.99),(3,2,1,59.99),(3,4,1,99.99),(4,7,1,89.99),(5,8,1,15.99),(5,9,1,79.99);
+/*!40000 ALTER TABLE `Cart_Items` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -175,7 +204,7 @@ CREATE TABLE `Orders` (
 
 LOCK TABLES `Orders` WRITE;
 /*!40000 ALTER TABLE `Orders` DISABLE KEYS */;
-INSERT INTO `Orders` VALUES (1,1,129.95,'P','2024-10-16 16:44:12'),(2,2,59.99,'S','2024-10-16 16:44:12'),(3,3,199.99,'D','2024-10-16 16:44:12'),(4,4,89.99,'C','2024-10-16 16:44:12'),(5,5,14.99,'P','2024-10-16 16:44:12');
+INSERT INTO `Orders` VALUES (1,1,129.95,'P','2024-10-16 17:37:57'),(2,2,59.99,'S','2024-10-16 17:37:57'),(3,3,199.99,'D','2024-10-16 17:37:57'),(4,4,89.99,'C','2024-10-16 17:37:57'),(5,5,14.99,'P','2024-10-16 17:37:57');
 /*!40000 ALTER TABLE `Orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -204,7 +233,7 @@ CREATE TABLE `Payment` (
 
 LOCK TABLES `Payment` WRITE;
 /*!40000 ALTER TABLE `Payment` DISABLE KEYS */;
-INSERT INTO `Payment` VALUES (1,1,'CC','P','2024-10-16 16:44:12'),(2,2,'PP','F','2024-10-16 16:44:12'),(3,3,'CC','P','2024-10-16 16:44:12'),(4,4,'CC','P','2024-10-16 16:44:12'),(5,5,'PP','F','2024-10-16 16:44:12');
+INSERT INTO `Payment` VALUES (1,1,'CC','P','2024-10-16 17:37:57'),(2,2,'PP','F','2024-10-16 17:37:57'),(3,3,'CC','P','2024-10-16 17:37:57'),(4,4,'CC','P','2024-10-16 17:37:57'),(5,5,'PP','F','2024-10-16 17:37:57');
 /*!40000 ALTER TABLE `Payment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -265,7 +294,7 @@ CREATE TABLE `Shipment` (
 
 LOCK TABLES `Shipment` WRITE;
 /*!40000 ALTER TABLE `Shipment` DISABLE KEYS */;
-INSERT INTO `Shipment` VALUES (1,1,'C','2024-10-16 16:44:12','TRACK1234'),(2,2,'P','2024-10-16 16:44:12','TRACK5678'),(3,3,'ISP','2024-10-16 16:44:12','TRACK9876'),(4,4,'P','2024-10-16 16:44:12','TRACK5432'),(5,5,'C','2024-10-16 16:44:12','TRACK6789');
+INSERT INTO `Shipment` VALUES (1,1,'C','2024-10-16 17:37:57','TRACK1234'),(2,2,'P','2024-10-16 17:37:57','TRACK5678'),(3,3,'ISP','2024-10-16 17:37:57','TRACK9876'),(4,4,'P','2024-10-16 17:37:57','TRACK5432'),(5,5,'C','2024-10-16 17:37:57','TRACK6789');
 /*!40000 ALTER TABLE `Shipment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -307,4 +336,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-16  9:48:37
+-- Dump completed on 2024-10-16 10:41:23
