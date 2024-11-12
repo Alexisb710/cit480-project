@@ -21,7 +21,8 @@ On the frontend, we are using:
 
 - **HTML**
 - **CSS**
-- **ReactJS**
+- **JavaScript**
+- **Laravel's Blade Templates**
 
 ## Tools and Software
 
